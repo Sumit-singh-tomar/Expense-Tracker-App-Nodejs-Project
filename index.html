@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Expense Tracker App</title>
@@ -11,19 +12,28 @@
 <body>
     <div class="rootContainer">
         <div class="mainBox">
-            <div id="heading">Sign Up</div>
-            <div id="sub-heading">Create your account</div>
-            <form>
-                <input type="text" id="user_name" placeholder="Username" required />
+            <form onsubmit="handleSubmit(event)"> 
+                <div id="heading">Sign Up</div>
+                <div id="sub-heading">Create your account</div>
+                <input type="text" id="user_name" placeholder="Username" />
 
-                <input type="email" id="email_id" placeholder="Email Id" required />
+                    <input type="email" id="email_id" placeholder="Email Id" />
 
-                <input type="password" id="password" placeholder="Password" required />
+                    <input type="password" id="password" placeholder="Password" />
 
-                <button>Sign Up</button>
-            </form>
+                    <button type="submit">Sign Up</button>
+
+                    <div id="alreadyAccount">Already have a account <a href="/login">login</a></div>
+                </form>
+
+            <div id="sideImage">
+                <img src="images/wallpaper.jpg" />
+            </div>
         </div>
+
     </div>
 </body>
+
+<script src="index.js"></script>
 
 </html>
