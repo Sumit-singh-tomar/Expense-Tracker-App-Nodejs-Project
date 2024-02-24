@@ -10,6 +10,12 @@ const registerRouter = require('./routes/register')
 
 app.use(bodyParser.json({extended:false}))
 app.use('/register',registerRouter)
+app.use('/register', registerRouter)
+app.use('/expense', expenseRouter)
+
+app.use((req, res) => {
+    res.send("Page not fuound 404!")
+})
 
 const server = http.createServer(app)
 

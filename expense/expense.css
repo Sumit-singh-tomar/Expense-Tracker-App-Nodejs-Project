@@ -15,18 +15,18 @@ body {
 
 .mainBox {
     background-color: thistle;
-    width: 50%;
-    border-radius: 20px 0px 0px 20px;
+    width: 30%;
+    border-radius: 20px;
     display: flex;
     align-items: center;
     box-sizing: border-box;
 }
 
 form {
-    width: 40%;
+    width: 100%;
     box-sizing: border-box;
     text-align: center;
-    padding:20px 10px 20px 20px;
+    padding:20px 20px 20px 20px;
 }
 
 #heading {
@@ -34,12 +34,8 @@ form {
     font-weight: bold;
 }
 
-#sub-heading {
-    margin-top: 10px;
-    color: gray;
-}
 
-#user_name {
+#amount {
     display: block;
     box-sizing: border-box;
     padding: 15px;
@@ -51,29 +47,28 @@ form {
     border: none;
 }
 
-#email_id {
+#description {
     display: block;
     box-sizing: border-box;
-    padding: 10px;
+    padding: 15px;
+    font-size: 18px;
     background-color: whitesmoke;
     border-radius: 10px;
     margin-top: 10px;
-    font-size: 18px;
     width: 100%;
     border: none;
-
 }
 
-#password {
+#category {
     display: block;
     box-sizing: border-box;
-    padding: 10px;
-    background-color: whitesmoke;
+    padding: 15px;
     font-size: 18px;
+    background-color: whitesmoke;
     border-radius: 10px;
     margin-top: 10px;
-    border: none;
     width: 100%;
+    border: none;
 }
 
 button {
@@ -89,38 +84,12 @@ button {
     cursor: pointer;
 }
 
-#alreadyAccount {
+#showExpense {
     margin-top: 10px;
 }
 
 
-#alreadyAccount a {
+#showExpense a {
     text-decoration: none;
 }
 
-#sideImage {
-    width: 60%;
-}
-
-img {
-    width: 100%;
-}
-
-@media screen and (max-width:950px) {
-    .mainBox{
-        display: block;
-        border-radius: 20px;
-    }
-    form {
-        width: 100%;
-    }
-    #sideImage {
-        display: none;
-        width: 100%;
-    }
-    #alreadyAccount {
-        margin-top: 10px;
-        margin-bottom: 20px;
-    }
-    
-}
