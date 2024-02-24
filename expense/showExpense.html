@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,18 +9,23 @@
     <link rel="stylesheet" href="showExpense.css">
 
 </head>
+
 <body>
-    <div>
-        <a href="expense.html">Add Expense</a>
+    <div id="addExpense">
+        <a href="expense.html">+ Add Expense</a>
     </div>
-    <table border="1">
-        <tr>
-            <th>Expense Name</th>
-            <th>Amount</th>
-            <th>Desciption</th>
-            <th>Action</th>
-        </tr>
-    </table>
+    <div id="viewTable">
+        <table>
+            <caption>Expense List</caption>
+            <tr>
+                <th>Expense Name</th>
+                <th>Amount</th>
+                <th>Desciption</th>
+                <th>Action</th>
+            </tr>
+        </table>
+    </div>
 </body>
 <script src="showExpense.js"></script>
+
 </html>

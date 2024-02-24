@@ -9,6 +9,7 @@ async function handleAddExpense(event) {
         var result = await axios.post('http://localhost:3000/expense/add-expense', expenseDetail)
         if (result.data.status) {
             alert(result.data.data)
+            window.location.href='showExpense.html'
         }
     }
     catch (e) {

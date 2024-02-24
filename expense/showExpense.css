@@ -1,7 +1,33 @@
+body{
+    margin: 0;
+    padding: 0;
+    background-color: aliceblue;
+}
+#addExpense{
+    margin-top: 20px;
+}
+a{
+    text-decoration: none;
+    padding: 10px 30px;
+    color: white;
+    background-color: tomato;
+}
+
+#viewTable{
+    display: flex;
+    justify-content: center;
+}
 
 table {
+    margin-top: 20px;
     border-collapse: collapse;
-    width: 50%;
+    width: 80%;
+}
+
+caption {
+    font-weight: bold;
+    font-size: 1.2em;
+    margin-bottom: 10px;
 }
 
 th, td {
@@ -13,6 +39,15 @@ th {
     background-color: #f2f2f2;
 }
 
-tr:nth-child(even) {
+tr:nth-child(odd) {
     background-color: #f2f2f2;
+}
+
+button{
+    background-color:darkgrey;
+    color: black;
+    padding: 8px 15px;
+    border-radius: 7px;
+    cursor: pointer;
+    border: none;
 }
