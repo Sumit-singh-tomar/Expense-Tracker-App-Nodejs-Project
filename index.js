@@ -11,12 +11,13 @@ async function handleSubmit(event) {
         const result = await axios.post('http://localhost:3000/register/user-register', userDetail)
         if (result.data.status) {
             alert('user successful login')
-            window.location.href = 'login.html';        }
+            window.location.href = 'login.html';
+        }
     }
     catch (e) {
         alert(e.response.data.data)
     }
-    event.target.user_name.value='',
-    event.target.email_id.value='',
-    event.target.password.value=''
+    event.target.user_name.value = '',
+        event.target.email_id.value = '',
+        event.target.password.value = ''
 }
