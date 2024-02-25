@@ -1,11 +1,10 @@
 const db = require('../Connections/database')
 const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
 
 exports.userRegisteration = (req, res) => {
     const query = "INSERT INTO admins (name, emailid, password) VALUES (?,?,?)"
     bcrypt.hash(req.body.password, 10, (err, hash) => {
-        console.log('hasherror', err);
-        console.log('hash', hash);
         db.execute(query, [req.body.user_name, req.body.email_id, hash])
             .then((result) => {
                 res.status(200).json({ status: true, data: 'User Registeration Succesfully' })
@@ -17,7 +16,11 @@ exports.userRegisteration = (req, res) => {
                     res.status(500).json({ status: false, data: 'Server Error' })
             })
     })
+}
 
+
+function generateToken(id) {
+    return jwt.sign({ userid: id }, 'secretkey')
 }
 
 exports.loginUser = (req, res) => {
@@ -30,13 +33,13 @@ exports.loginUser = (req, res) => {
             }
             else {
                 bcrypt.compare(req.body.password, result[0][0].password, (err, response) => {
-                    if(err)
-                    res.status(401).json({ status: false, data: 'User not Authorized, Incorrect Password' })
-                    else
-                    res.status(200).json({ status: true, data: result[0] })
-
+                    if (response) {
+                        res.status(200).json({ status: true, data: result[0], token: generateToken(result[0][0].id) })
+                    }
+                    else {
+                        res.status(401).json({ status: false, data: 'User not Authorized, Incorrect Password' })
+                    }
                 })
-
             }
         })
         .catch((e) => {
