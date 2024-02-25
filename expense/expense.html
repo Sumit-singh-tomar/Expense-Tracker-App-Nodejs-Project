@@ -12,30 +12,44 @@
 
 <body>
     <div class="rootContainer">
-        <div class="mainBox">
-            <form onsubmit="handleAddExpense(event)">
-                <div id="heading">Add Expense</div>
-                <input type="number" id="amount" placeholder="Expense Amount" />
+        <div id="buyPremium">
+            <button onclick="handleBuyPremium(event)">Buy Premium Membership</button>
+            <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+        </div>
 
-                <input type="text" id="description" placeholder="Enter Desciption" />
+        <div id="container">
+            <div class="mainBox">
+                <form onsubmit="handleAddExpense(event)">
+                    <!-- <div id="buyPremium">
+                    <button onclick="handleBuyPremium(event)">Buy Premium Membership</button>
+                </div> -->
 
-                <select id="category">
-                    <option>Choose Category</option>
-                    <option>Food</option>
-                    <option>Petrol</option>
-                    <option>Salary</option>
-                </select>
+                    <div id="heading">Add Expense</div>
 
-                <button type="submit">Add Expense</button>
+                    <input type="number" id="amount" placeholder="Expense Amount" />
 
-                <div id="showExpense">
-                    <a href="showExpense.html">View All Expenses</a>
-                </div>
-            </form>
+                    <input type="text" id="description" placeholder="Enter Desciption" />
+
+                    <select id="category">
+                        <option>Choose Category</option>
+                        <option>Food</option>
+                        <option>Petrol</option>
+                        <option>Salary</option>
+                    </select>
+
+                    <button type="submit" id="submitButton">Add Expense</button>
+
+                    <div id="showExpense">
+                        <a href="showExpense.html">View All Expenses</a>
+                    </div>
+
+                </form>
+            </div>
         </div>
 
     </div>
 </body>
 
 <script src="expense.js"></script>
+
 </html>

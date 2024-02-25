@@ -5,11 +5,9 @@ async function handleLogin(event) {
         var result = await axios.post('http://localhost:3000/register/login-user', userDetail)
         if (result.data.status) {
             alert("User Login Succesfully")
+            localStorage.setItem('token',result.data.token)
             window.location.href = '../expense/expense.html'
         }
-        // else{
-        //     alert(result.data.data)
-        // }
     } 
     catch (e) {
         alert(e.response.data.data)

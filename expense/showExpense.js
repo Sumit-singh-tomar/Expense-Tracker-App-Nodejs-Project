@@ -1,5 +1,7 @@
 document.addEventListener("DOMContentLoaded", async () => {
-    var result = await axios.get('http://localhost:3000/expense/get-expense')
+    const token = localStorage.getItem('token')
+
+    var result = await axios.get("http://localhost:3000/expense/get-expense", { headers: { "Authorization": token } })
 
     const table = document.querySelector('table')
 
@@ -13,7 +15,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         deleteButton.innerHTML = "Delete"
         deleteButton.onclick = async function (event) {
             try {
-                var response = await axios.delete(`http://localhost:3000/expense/delete-expense/${item.id}`)
+                const token = localStorage.getItem('token')
+                var response = await axios.delete(`http://localhost:3000/expense/delete-expense/${item.id}`, { headers: { "Authorization": token } })
                 if (response.data.status) {
                     location.reload()
                 }
