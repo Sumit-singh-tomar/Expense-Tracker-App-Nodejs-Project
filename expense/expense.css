@@ -8,16 +8,25 @@ body {
     width: 100vw;
     height: 100vh;
     background-color: aliceblue;
-    /* display: flex; */
-    /* justify-content: center; */
-    /* align-items: center; */
 }
 
-#container{
-    height: 80%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+#buyPremium{
+    height: 15%;
+    text-align: right;
+}
+
+#buyPremium button{
+    /* margin-left: 100%; */
+    width: 20%;
+    margin-top: 1%;
+    background-color: tomato;
+    border: none;
+    color: #fff;
+    padding: 10px 30px;
+    font-weight: bold;
+    font-size: 16px;
+    border-radius: 10px 0px 0px 10px;
+    cursor: pointer;
 }
 
 .mainBox {
@@ -29,21 +38,12 @@ body {
     box-sizing: border-box;
 }
 
-#buyPremium{
-    text-align: right;
-    height: 8%;
-}
 
-#buyPremium button{
-    margin-top: 1%;
-    background-color: tomato;
-    border: none;
-    color: #fff;
-    padding: 10px 30px;
-    font-weight: bold;
-    font-size: 16px;
-    border-radius: 10px 0px 0px 10px;
-    cursor: pointer;
+#container{
+    height: 85%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 form {

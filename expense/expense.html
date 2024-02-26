@@ -7,23 +7,21 @@
     <title>Add Expense</title>
     <link rel="stylesheet" href="expense.css">
     <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
 </head>
 
 <body>
     <div class="rootContainer">
         <div id="buyPremium">
-            <button onclick="handleBuyPremium(event)">Buy Premium Membership</button>
-            <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+            <div>
+                <button onclick="handleBuyPremium(event)">Buy Premium Membership</button>
+            </div>
         </div>
 
         <div id="container">
             <div class="mainBox">
                 <form onsubmit="handleAddExpense(event)">
-                    <!-- <div id="buyPremium">
-                    <button onclick="handleBuyPremium(event)">Buy Premium Membership</button>
-                </div> -->
-
                     <div id="heading">Add Expense</div>
 
                     <input type="number" id="amount" placeholder="Expense Amount" />

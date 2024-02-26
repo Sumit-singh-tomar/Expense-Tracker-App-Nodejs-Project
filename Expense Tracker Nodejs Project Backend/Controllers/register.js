@@ -3,18 +3,18 @@ const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 
 exports.userRegisteration = (req, res) => {
-    const query = "INSERT INTO admins (name, emailid, password) VALUES (?,?,?)"
-    bcrypt.hash(req.body.password, 10, (err, hash) => {
-        db.execute(query, [req.body.user_name, req.body.email_id, hash])
-            .then((result) => {
-                res.status(200).json({ status: true, data: 'User Registeration Succesfully' })
-            })
-            .catch((e) => {
-                if (e.code === 'ER_DUP_ENTRY')
-                    res.status(500).json({ status: false, data: 'User Already Exist' })
-                else
-                    res.status(500).json({ status: false, data: 'Server Error' })
-            })
+    const query = "INSERT INTO users (name, emailid, password, ispremium) VALUES (?,?,?,?)"
+    bcrypt.hash(req.body.password, 10, async (err, hash) => {
+        try {
+            await db.execute(query, [req.body.user_name, req.body.email_id, hash, false])
+            res.status(200).json({ status: true, data: 'User Registeration Succesfully' })
+        }
+        catch (e) {
+            if (e.code === 'ER_DUP_ENTRY')
+                res.status(500).json({ status: false, data: 'User Already Exist' })
+            else
+                res.status(500).json({ status: false, data: 'Server Error' })
+        }
     })
 }
 
@@ -24,7 +24,7 @@ function generateToken(id) {
 }
 
 exports.loginUser = (req, res) => {
-    const query = "SELECT * FROM admins WHERE emailid = ?";
+    const query = "SELECT * FROM users WHERE emailid = ?";
     const values = [req.body.email_id]
     db.execute(query, values)
         .then((result) => {

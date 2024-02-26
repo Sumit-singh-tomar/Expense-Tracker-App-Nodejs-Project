@@ -10,7 +10,7 @@ async function handleSubmit(event) {
     try {
         const result = await axios.post('http://localhost:3000/register/user-register', userDetail)
         if (result.data.status) {
-            alert('user successful login')
+            alert(result.data.data)
             window.location.href = '../login/login.html'
         }
     }

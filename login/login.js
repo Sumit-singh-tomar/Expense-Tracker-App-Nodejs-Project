@@ -6,6 +6,7 @@ async function handleLogin(event) {
         if (result.data.status) {
             alert("User Login Succesfully")
             localStorage.setItem('token',result.data.token)
+            localStorage.setItem('userData',JSON.stringify(result.data.data[0]))
             window.location.href = '../expense/expense.html'
         }
     } 
