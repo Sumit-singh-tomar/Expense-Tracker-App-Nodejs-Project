@@ -32,10 +32,10 @@ form {
 #heading {
     font-size: 24px;
     font-weight: bold;
+    margin-bottom: 2%;
 }
 
 #sub-heading {
-    margin-top: 10px;
     color: gray;
 }
 
@@ -95,6 +95,15 @@ button {
 
 
 #alreadyAccount a {
+    text-decoration: none;
+}
+
+#forgotPassword{
+    margin-top: 10px;
+}
+
+
+#forgotPassword a {
     text-decoration: none;
 }
 
