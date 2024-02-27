@@ -1,5 +1,6 @@
 const Razorpay = require('razorpay')
 const db = require('../Connections/database')
+const jwt = require('jsonwebtoken')
 
 exports.buypremium = (req, res) => {
     try {
@@ -10,27 +11,30 @@ exports.buypremium = (req, res) => {
 
         const amount = 50000000
 
-        rzp.orders.create({ amount, currency: "INR" }, (err, order) => {
-            if (err) {
-                res.status(500).json({ status: false, data: 'RazorPay Error' })
-            }
-            else {
-                db.execute("INSERT INTO orders (orderid, status) VALUES (?,?)", [order.id, 'PENDING'])
-                    .then((result) => {
-                        res.status(200).json({ status: true, order, key_id: rzp.key_id })
-                    })
-                    .catch((e) => {
-                        res.status(500).json({ status: false, data: 'Database Error' })
-                    })
+        rzp.orders.create({ amount, currency: "INR" }, async (err, order) => {
+            try {
+                if (err) {
+                    res.status(500).json({ status: false, data: 'RazorPay Error' })
+                }
+                else {
+                    await db.execute("INSERT INTO orders (orderid, status) VALUES (?,?)", [order.id, 'PENDING'])
+                    res.status(200).json({ status: true, order, key_id: rzp.key_id })
+                }
+            } catch (e) {
+                res.status(500).json({ status: false, data: 'Database Error' })
             }
         })
+
     } catch (err) {
-        console.log('222', err);
         res.status(500).json({ status: false, data: 'Server Error' })
     }
 }
 
-exports.updatetranscationstatus = (req, res) => {
+function generateToken(id, name, ispremium) {
+    return jwt.sign({ userid: id, name: name, ispremium: ispremium }, 'secretkey')
+}
+
+exports.updatetransactionstatus = (req, res) => {
     try {
         const promise1 = db.execute('UPDATE orders SET paymentid = ?, userid = ?, status = ? WHERE orderid = ?', [req.body.payment_id, req.user[0].id, req.body.status, req.body.order_id])
         if (req.body.status === 'SUCCESSFUL') {
@@ -38,7 +42,7 @@ exports.updatetranscationstatus = (req, res) => {
 
             Promise.all([promise1, promise2])
                 .then(() => {
-                    res.status(200).json({ status: true, data: 'Transaction Successful' })
+                    res.status(200).json({ status: true, data: 'Transaction Successful', token: generateToken(req.user[0].id, req.user[0].name, 1) })
                 })
                 .catch((e) => {
                     res.status(500).json({ status: false, data: 'Database Error' })
@@ -48,9 +52,9 @@ exports.updatetranscationstatus = (req, res) => {
             promise1.then(() => {
                 res.status(200).json({ status: true, data: 'Transaction Failed' })
             })
-            .catch((e) => {
-                res.status(500).json({ status: false, data: 'Database Error' })
-            })
+                .catch((e) => {
+                    res.status(500).json({ status: false, data: 'Database Error' })
+                })
         }
     } catch (e) {
         res.status(500).json({ status: false, data: 'Server Error' })

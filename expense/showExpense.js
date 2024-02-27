@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         deleteButton.onclick = async function (event) {
             try {
                 const token = localStorage.getItem('token')
-                var response = await axios.delete(`http://localhost:3000/expense/delete-expense/${item.id}`, { headers: { "Authorization": token } })
+                var response = await axios.delete(`http://localhost:3000/expense/delete-expense/${item.id}/${item.amount}`, { headers: { "Authorization": token } })
                 if (response.data.status) {
                     location.reload()
                 }

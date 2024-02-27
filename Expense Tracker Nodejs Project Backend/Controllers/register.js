@@ -18,31 +18,29 @@ exports.userRegisteration = (req, res) => {
     })
 }
 
-
-function generateToken(id) {
-    return jwt.sign({ userid: id }, 'secretkey')
+function generateToken(id, name, ispremium) {
+    return jwt.sign({ userid: id, name: name, ispremium: ispremium }, 'secretkey')
 }
 
-exports.loginUser = (req, res) => {
-    const query = "SELECT * FROM users WHERE emailid = ?";
-    const values = [req.body.email_id]
-    db.execute(query, values)
-        .then((result) => {
-            if (result[0].length === 0) {
-                res.status(404).json({ status: false, data: 'User Not Found' })
-            }
-            else {
-                bcrypt.compare(req.body.password, result[0][0].password, (err, response) => {
-                    if (response) {
-                        res.status(200).json({ status: true, data: result[0], token: generateToken(result[0][0].id) })
-                    }
-                    else {
-                        res.status(401).json({ status: false, data: 'User not Authorized, Incorrect Password' })
-                    }
-                })
-            }
-        })
-        .catch((e) => {
-            res.status(500).json({ status: false, data: 'server error' })
-        })
+exports.loginUser = async (req, res) => {
+    try {
+        const query = "SELECT * FROM users WHERE emailid = ?";
+        const values = [req.body.email_id]
+        const result = await db.execute(query, values)
+        if (result[0].length === 0) {
+            res.status(404).json({ status: false, data: 'User Not Found' })
+        }
+        else {
+            bcrypt.compare(req.body.password, result[0][0].password, (err, response) => {
+                if (response) {
+                    res.status(200).json({ status: true, data: result[0], token: generateToken(result[0][0].id, result[0][0].name, result[0][0].ispremium) })
+                }
+                else {
+                    res.status(401).json({ status: false, data: 'User not Authorized, Incorrect Password' })
+                }
+            })
+        }
+    } catch (e) {
+        res.status(500).json({ status: false, data: 'server error' })
+    }
 }
