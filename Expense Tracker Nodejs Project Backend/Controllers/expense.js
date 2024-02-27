@@ -4,7 +4,13 @@ exports.addExpense = (req, res) => {
     db.execute("INSERT INTO expense (expense_name, amount, description, userid) VALUES (?,?,?,?)",
         [req.body.expense_name, req.body.amount, req.body.description, req.user[0].id])
         .then((result) => {
-            res.status(200).json({ status: true, data: 'Expense Added Successfully' })
+            db.execute("UPDATE users SET totalexpense = ? WHERE id = ?", [parseInt(req.user[0].totalexpense) + parseInt(req.body.amount), req.user[0].id])
+                .then((result) => {
+                    res.status(200).json({ status: true, data: 'Expense Added Successfully' })
+                })
+                .catch((e) => {
+                    res.status(500).json({ status: false, data: 'Database error' })
+                })
         })
         .catch((e) => {
             res.status(500).json({ status: false, data: 'server error' })
