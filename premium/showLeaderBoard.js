@@ -13,6 +13,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         col1.innerHTML = i+1;
         col1.style.width='5%';
         row.insertCell(1).innerHTML = item.name;
-        row.insertCell(2).innerHTML = item.totalexpense || 0;
+        row.insertCell(2).innerHTML = `&#8377;${item.totalexpense}` || 0;
     })
 })
