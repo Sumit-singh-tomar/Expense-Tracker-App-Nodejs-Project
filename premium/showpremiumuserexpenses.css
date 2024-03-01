@@ -19,6 +19,23 @@ a{
     text-align: center;
 }
 
+select{
+    background-color: tomato;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    color: white;
+}
+
+select option{
+    background-color: white;
+    color: black;
+}
+
+select option:first-child{
+    display: none;
+}
+
 #downloadExpense button{
     background-color: tomato;
     border: none;
@@ -27,7 +44,6 @@ a{
     color: white;
     cursor: pointer;
 }
-
 
 #viewTable,#pagination{
     display: flex;
@@ -44,8 +60,6 @@ a{
     border: none;
     cursor: pointer;
 }
-
-
 
 table {
     margin-top: 20px;
@@ -71,4 +85,12 @@ th {
 
 tr:nth-child(odd) {
     background-color: #f2f2f2;
+}
+
+table button{
+    background-color: darkgray;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 10px;
 }

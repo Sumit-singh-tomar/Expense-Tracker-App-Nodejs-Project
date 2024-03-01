@@ -20,19 +20,17 @@
             <button onclick="handleshowpremiumuserexpenses()">Daily</button>
             <button onclick="handleWeeklyWise()">Weekly</button>
             <button onclick="handleMonthlyWise()">Monthly</button>
+            <select onchange="handleRowPerPage()" id="rowperpage">
+                <option>Row Per Page</option>
+                <option>5</option>
+                <option>10</option>
+                <option>15</option>
+                <option>20</option>
+            </select>
         </div>
 
         <div id="viewTable">
             <table>
-                <!-- <caption>Daily Expenses</caption>
-                <tr>
-                    <th>Sn</th>
-                    <th>Date</th>
-                    <th>Description</th>
-                    <th>Category</th>
-                    <th>Income</th>
-                    <th>Expense</th>
-                </tr> -->
             </table>
         </div>
 
